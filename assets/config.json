@@ -1,0 +1,22 @@
+{
+  "entry": {
+    "main": [
+      "./scripts/main.js",
+      "./styles/main.scss"
+    ],
+    "options": [
+      "./scripts/options.js",
+      "./styles/options.scss"
+    ],
+    "post": [
+      "./scripts/post.js",
+      "./styles/post.scss"
+    ]
+  },
+  "publicPath": "/wp-content/plugins/mb-breaking-news/",
+  "publicPathProduction": "../",
+  "devUrl": "https://localhost",
+  "proxyUrl": "http://localhost:3000",
+  "cacheBusting": "[name]_[hash:8]",
+  "watch": []
+}

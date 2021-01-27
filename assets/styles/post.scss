@@ -1,0 +1,30 @@
+@import "common/variables";
+@import "common/functions";
+@import "common/mixins";
+@import "common/placeholders";
+
+@import "~flatpickr/dist/flatpickr.css";
+
+.mbbn-row {
+	padding: 5px 0;
+}
+
+.mbbn-input-text {
+	display: block;
+	width: 100%;
+	margin-top: 5px;
+	padding: 5px 4px;
+}
+
+.mbbn-show-if-checked {
+	& > div {
+		display: flex;
+		width: 100%;
+		align-items: center;
+
+		input {
+			margin-top: 2px;
+			margin-right: 5px;
+		}
+	}
+}

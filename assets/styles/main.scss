@@ -1,0 +1,21 @@
+@import "common/variables";
+@import "common/functions";
+@import "common/mixins";
+@import "common/placeholders";
+
+.breaking {
+	width: 100vw;
+	position: relative;
+	left: 50%;
+	right: 50%;
+	margin-left: -50vw;
+	margin-right: -50vw;
+	padding: 20px;
+
+	.type-post & {
+		left: auto;
+		right: auto;
+		margin-left: 0;
+		margin-right: 0;
+	}
+}

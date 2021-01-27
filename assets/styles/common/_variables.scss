@@ -1,0 +1,55 @@
+/**
+ * Grid sizing settings
+ */
+$grid: (
+	gutter: 30px,
+	columns: 12,
+	container: 1200px,
+);
+
+$grid-breakpoints: (
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px
+) !default;
+
+$container-max-widths: (
+	//sm: 540px,
+	md: 740px,
+	lg: 890px,
+	//xl: 1140px
+) !default;
+
+/**
+ * Font settings
+ */
+$fonts: (
+	base: 16,
+	primary: "'Baskerville BT', Helvetica, sans-serif",
+	headings: "'Gotham', Helvetica, sans-serif",
+);
+
+$font-gotham: "Gotham A", "Gotham B", Helvetica, sans-serif;
+
+/**
+ * Colors
+ */
+$colors: (
+	'brand': #12312b,
+	'black': #000,
+	'white': #fff,
+	'satin-linen': #eae6de,
+	'salmon': #ff8d6a,
+	'yellow': #e7ff3f, //#f1f45a
+);
+
+/**
+ * Breakpoints
+ */
+$breakpoints: (
+	sm: 576px,
+	md: 768px,
+	lg: 992px,
+	xl: 1200px
+);

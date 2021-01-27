@@ -1,0 +1,182 @@
+/**
+ * Clearfix
+ */
+@mixin clearfix() {
+	&::after {
+		display: block;
+		content: "";
+		clear: both;
+	}
+}
+
+/*
+  This mixin can be used to set the object-fit:
+  @include object-fit(contain);
+  or object-fit and object-position:
+  @include object-fit(cover, top);
+*/
+@mixin object-fit($fit: fill, $position: null) {
+	-o-object-fit: $fit;
+	object-fit: $fit;
+
+	@if $position {
+		-o-object-position: $position;
+		object-position: $position;
+		font-family: 'object-fit: #{$fit}; object-position: #{$position}';
+	}
+	@else {
+		font-family: 'object-fit: #{$fit}';
+	}
+}
+
+/**
+ * Font sizing shortend
+ */
+
+@mixin font-size($size, $line-height:get_font('base'), $letter-spacing:0, $unit: rem) {
+	@if ($size) {
+		font-size: rem($size, $unit);
+	}
+
+	@if ($line-height == 1) {
+		line-height: 1;
+	}
+
+	@if ($line-height != getFont('base')) {
+		line-height: leading($size, $line-height);
+	}
+
+	@if ($letter-spacing != 0) {
+		letter-spacing: spacing($letter-spacing);
+	}
+}
+
+
+
+/**
+ * Get custom font family from map
+ */
+
+@mixin font-family( $name, $weight: 400, $style: normal) {
+	font-family: unquote(get_font($name));
+	font-weight: $weight;
+	font-style: $style;
+}
+
+
+/**
+ * Input element placeholder crossbrowser
+ */
+
+@mixin placeholder {
+	&::-webkit-input-placeholder {
+		@content;
+	}
+
+	&::-moz-placeholder {
+		@content;
+	}
+
+	&:-moz-placeholder {
+		@content;
+	}
+
+	&:-ms-input-placeholder {
+		@content;
+	}
+}
+
+/**
+ * Links styling
+ */
+
+@mixin link-colors($normal, $hover:'none') {
+	@if ($hover=='none') {
+		$hover: $normal;
+	}
+
+	&:link,
+	&:focus,
+	&:active,
+	&:visited {
+		color: $normal;
+	}
+
+	&:hover {
+		color: $hover;
+	}
+}
+
+// Normal style
+@mixin ns {
+	&:link,
+	&:visited {
+		@content;
+	}
+}
+
+// Hover style
+@mixin hs {
+	&:hover,
+	&:focus,
+	&:active {
+		@content;
+	}
+}
+
+// grid-columns
+@mixin make-grid-columns() {
+	$num-cols: get_opt('columns');
+	$gutter: gutter(true);
+
+	$i: 1;
+	@while $i <= $num-cols {
+		$perc: unquote((100 / ($num-cols / $i)) + "%");
+
+		.col-#{$i} {
+			flex: 0 0 $perc;
+			max-width: $perc;
+		}
+		$i: $i + 1;
+	}
+
+	@each $breakpoint_key, $brakpoint_value in $grid-breakpoints {
+		$i: 1;
+		@while $i <= $num-cols {
+			.col-#{$breakpoint_key}-#{$i} {
+				position: relative;
+				width: 100%;
+				padding-right: $gutter;
+				padding-left: $gutter;
+			}
+			$i: $i + 1;
+		}
+	}
+
+	@each $breakpoint_key, $brakpoint_value in $grid-breakpoints {
+		@media (min-width: $brakpoint_value) {
+			$i: 1;
+			@while $i <= $num-cols {
+				$perc: unquote((100 / ($num-cols / $i)) + "%");
+
+				.col-#{$breakpoint_key}-#{$i} {
+					flex: 0 0 $perc;
+					max-width: $perc;
+				}
+				$i: $i + 1;
+			}
+		}
+	}
+}
+
+@mixin make-containers() {
+	@each $breakpoint_key, $brakpoint_value in $grid-breakpoints {
+		@if map-has-key($container-max-widths, $breakpoint_key) {
+			@media (min-width: $brakpoint_value) {
+				.container {
+					max-width: map-get($container-max-widths, $breakpoint_key);
+				}
+			}
+		}
+	}
+}
